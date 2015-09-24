@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="instructions-container" class="row text-right">
+        <button class="btn btn-default" data-toggle="modal" data-target="#instructions-modal">View Instructions</button>
+      </div>
+      <h1 class="text-center">Tic Tac Toe ! ! !</h1>
+      <div class="play-options row text-center">
+        <button id="PVP" class="option-btn btn btn-info btn-lg">Play against a friend!</button>
+        <button id="PVC" class="option-btn btn btn-success btn-lg">Play against the computer!</button>
+      </div>
+      <div class="pick-name text-center">
+        <input id="player1" type="text" class="form-control" placeholder="Enter Player One's Name!" required>
+        <br>
+        <input id="player2" type="text" class="form-control" placeholder="Enter Player Two's Name!" required>
+        <br>
+        <button id="player-names" class="name-btn btn btn-start btn-lg">Start the Game!</button>
+      </div>
+      <div class="tic-tac-toe-table">
+
+        <table id="board" class="table table-bordered">
+          <tr>
+            <td class='cell-value' id="1"></td>
+            <td class='cell-value' id="2"></td>
+            <td class='cell-value' id="3"></td>
+          </tr>
+          <tr>
+            <td class='cell-value' id="4"></td>
+            <td class='cell-value' id="5"></td>
+            <td class='cell-value' id="6"></td>
+          </tr>
+          <tr>
+            <td class='cell-value' id="7"></td>
+            <td class='cell-value' id="8"></td>
+            <td class='cell-value' id="9"></td>
+          </tr>
+        </table>
+        <h2><span class="turn"></span><h2>
+      </div>
+      <div class="result">
+        <h2><span id="winner"></span></h2>
+      </div>
+      <div id="msg-container" class="row text-center"></div>
+
+      <!-- Cheater Modal -->
+      <div class="modal fade" id="cheaterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title text-center" id="myModalLabel">CHEATER!</h4>
+            </div>
+            <div class="modal-body">
+              Don't cheat - pick a different square...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instructions Modal -->
+      <div class="modal fade" id="instructions-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">How to Play:</h4>
+            </div>
+            <div class="modal-body">
+              <ul class="instructions-list">
+                <li>The object of Tic Tac Toe is to get three in a row.</li>
+                <li>You play on a three by three game board.</li>
+                <li>The first player is known as X and the second is O.</li>
+                <li>Players alternate placing Xs and Os on the game board until either opponent has three in a row or all nine squares are filled.</li>
+                <li>X always goes first, and in the event that no one has three in a row, the stalemate is called a cat game.</li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Name Modal -->
+      <div class="modal fade" id="noNameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Uh oh...</h4>
+            </div>
+            <div class="modal-body">
+              <p>
+                Please enter a name for <u>both</u> players.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

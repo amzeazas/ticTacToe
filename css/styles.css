@@ -1,0 +1,76 @@
+body {
+  margin: auto;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.tic-tac-toe-table {
+  display: none;
+  width: 50%;
+}
+
+#board {
+  table-layout: fixed;
+  font-size: 3em;
+  text-align: center;
+  background-color: #B2D1E0;
+}
+
+#board td {
+  height: 155px;
+  width: 78px;
+  border: 8px black;
+  vertical-align: middle;
+  border: 3px solid black;
+}
+
+.cell-value:hover {
+  background-color: #7BB0CA;
+}
+
+.x-cursor {
+  cursor: url("../public/x-cursor.png") 25 25, pointer;
+}
+
+.o-cursor {
+  cursor: url("../public/o-cursor.png") 25 25, pointer;
+}
+
+.tic-tac-toe-table,
+.result {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.result {
+  display: none;
+}
+
+.extra-bold {
+  font-weight: 100;
+}
+
+#instructions-container {
+  padding: 10px;
+}
+
+.play-options {
+  margin: auto;
+  margin-top: 50px;
+}
+
+.instructions-list li {
+  margin-bottom: 13px;
+}
+
+.btn-start {
+  color: #fff;
+  background-color: #7BB0CA;
+}
+
+.btn-start:hover {
+  background-color: #628CA1;
+}
+
+.pick-name {
+  display: none;
+}
