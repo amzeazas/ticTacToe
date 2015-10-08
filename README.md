@@ -8,9 +8,6 @@
 
 _This is the game of tic tac toe. You can play against a friend or try your best against the computer. Have fun!_
 
-_Goals for future updates_
-* _Update app to accurately reflect player and computer name_
-
 ## Setup
 
 1. open a command terminal
