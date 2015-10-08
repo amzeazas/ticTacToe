@@ -72,6 +72,7 @@ $(document).ready(function() {
   $("#PVC").on("click", function() {
     $(".play-options").hide();
     $(".tic-tac-toe-table").fadeIn(500);
+    $('.turn').text("Your Turn");
     computer = true;
   });
 
@@ -129,20 +130,24 @@ $(document).ready(function() {
       $(".cell-value").off();
     } else {
       playerTurn = playerTurn === player1 ? player2 : player1;
-      $('.turn').text("Player " + playerTurn.mark + "'s Turn");
+      $('.turn').text("Your Turn");
     };
   }
 
 
   $(".cell-value").click(function() {
     if ( $(this).text() === "" ) {
-      if (playerTurn.mark === "X") {
-        currentPlayer = player1Name;
-        $('.turn').text(player2Name + "'s Turn");
+      if (computer === false) {
+        if (playerTurn.mark === "X") {
+          currentPlayer = player1Name;
+          $('.turn').text(player2Name + "'s Turn");
+        } else {
+          currentPlayer = player2Name;
+          $('.turn').text(player1Name + "'s Turn");
+        }
       } else {
-        currentPlayer = player2Name;
-        $('.turn').text(player1Name + "'s Turn");
-      }
+        $('.turn').text("You Turn");
+      };
       var spaceId = parseInt( $(this).attr('id') );
       playerTurn.move(spaceId);
       var index = availableSpaces.indexOf(spaceId);
@@ -151,11 +156,19 @@ $(document).ready(function() {
       changeCursor();
       $(this).text(playerTurn.mark);
       if (playerTurn.win() === true) {
-        $('span#winner').text('Congrats! ' + currentPlayer + ' wins!');
+        if (computer === false) {
+          $('span#winner').text('Congrats! ' + currentPlayer + ' wins!');
+        } else {
+          $('span#winner').text("Congrats! You beat the computer!!");
+        }
         endGame();
         $(".cell-value").off();
       } else if (turns === 9) {
-        $('span#winner').text('Game over. Fight to the DEATH (or play again)!')
+        if (computer === false) {
+          $('span#winner').text('Game over. Fight to the DEATH (or play again)!')
+        } else {
+          $('span#winner').text("Game over. It's a tie!")
+        }
         renderCat();
         endGame();
       } else {
