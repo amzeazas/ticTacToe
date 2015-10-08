@@ -54,7 +54,7 @@ Player.prototype.win = function() {
 $(document).ready(function() {
   var player1 = new Player("X");
   var player2 = new Player("O");
-  var playerTurn = player1;
+  var playerTurn = player1
   var availableSpaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   changeCursor();
   var turns = 0;
@@ -66,11 +66,13 @@ $(document).ready(function() {
   $("#PVP").on("click", function() {
     $(".play-options").hide();
     $(".pick-name").fadeIn(500);
+    computer = false;
   });
 
   $("#PVC").on("click", function() {
     $(".play-options").hide();
     $(".tic-tac-toe-table").fadeIn(500);
+    computer = true;
   });
 
   $("#player-names").on("click", function() {
@@ -79,36 +81,13 @@ $(document).ready(function() {
       $(".tic-tac-toe-table").fadeIn(500);
       player1Name = $("input#player1").val();
       player2Name = $("input#player2").val();
+      currentPlayer = player1Name
       $('.turn').text(player1Name + "'s Turn");
     } else {
       $('#noNameModal').modal('show');
     }
   });
-
-  $("#PVP").on("click", function() { computer = false; });
-  $("#PVC").on("click", function() { computer = true;  });
-
-  function renderMsgs() {
-    $(".result").show();
-    $('.turn').hide();
-  }
-
-  function renderCat() {
-    $(".tic-tac-toe-table").empty();
-    $(".tic-tac-toe-table").append(
-        "<div id='cat-container'>" +
-          "<img class='img-rounded' src='public/gladiator-cat.jpg'>" +
-        "</div>"
-    ).hide().fadeIn(2000);
-  }
-
-  function renderRestartBtn() {
-    $('#msg-container').append("<button id='restart' class='btn btn-default'>Play again?</button>");
-    $('#restart').on("click", function() {
-      location.reload();
-    });
-  }
-
+  
   function changeCursor() {
     if (turns % 2 === 0 || turns === undefined) {
       $(".tic-tac-toe-table").removeClass("o-cursor").addClass("x-cursor");
@@ -117,30 +96,41 @@ $(document).ready(function() {
     }
   }
 
-  function endCursor() {
+  function endGame() {
+    $(".result").show();
+    $('.turn').hide();
+    $('#msg-container').append("<button id='restart' class='btn btn-default'>Play again?</button>");
+    $('#restart').on("click", function() {
+      location.reload();
+    });
     $(".tic-tac-toe-table").css("cursor", "pointer");
   }
 
+  function renderCat() {
+    $(".tic-tac-toe-table").empty();
+    $(".tic-tac-toe-table").append(
+      "<div id='cat-container'>" +
+      "<img class='img-rounded' src='public/gladiator-cat.jpg'>" +
+      "</div>"
+    ).hide().fadeIn(2000);
+  }
+
   function computerPick() {
-    var selection = availableSpaces[Math.floor(Math.random()*availableSpaces.length)];
-    $("#" + selection).text(playerTurn.mark);
-    playerTurn.move(selection);
-    var index = availableSpaces.indexOf(selection);
+    var spaceId = availableSpaces[Math.floor(Math.random()*availableSpaces.length)];
+    $("#" + spaceId).text(playerTurn.mark);
+    playerTurn.move(spaceId);
+    var index = availableSpaces.indexOf(spaceId);
     availableSpaces.splice(index, 1);
     turns++;
     changeCursor();
     if (playerTurn.win() === true) {
       $('span#winner').text('Congrats!' + " " + 'Player ' + playerTurn.mark + ' wins!');
-      renderRestartBtn();
-      renderMsgs();
-      endCursor()
+      endGame();
       $(".cell-value").off();
     } else if (turns === 9) {
       $('span#winner').text('Game over. Fight to the DEATH (or play again)!')
       renderCat();
-      renderMsgs();
-      renderRestartBtn();
-      endCursor()
+      endGame();
     } else {
       playerTurn = playerTurn === player1 ? player2 : player1;
       $('.turn').text("Player " + playerTurn.mark + "'s Turn");
@@ -150,33 +140,30 @@ $(document).ready(function() {
 
   $(".cell-value").click(function() {
     if ( $(this).text() === "" ) {
-      $(this).text(playerTurn.mark);
+      if (playerTurn.mark === "X") {
+        currentPlayer = player1Name;
+        $('.turn').text(player2Name + "'s Turn");
+      } else {
+        currentPlayer = player2Name;
+        $('.turn').text(player1Name + "'s Turn");
+      }
       var spaceId = parseInt( $(this).attr('id') );
       playerTurn.move(spaceId);
       var index = availableSpaces.indexOf(spaceId);
       availableSpaces.splice(index, 1);
-      if (playerTurn.mark === "X") {
-        currentPlayer = player1Name;
-      } else {
-        currentPlayer = player2Name;
-      }
       turns++;
       changeCursor();
+      $(this).text(playerTurn.mark);
       if (playerTurn.win() === true) {
         $('span#winner').text('Congrats! ' + currentPlayer + ' wins!');
-        renderRestartBtn();
-        renderMsgs();
-        endCursor()
+        endGame();
         $(".cell-value").off();
       } else if (turns === 9) {
         $('span#winner').text('Game over. Fight to the DEATH (or play again)!')
         renderCat();
-        renderMsgs();
-        renderRestartBtn();
-        endCursor()
+        endGame();
       } else {
         playerTurn = playerTurn === player1 ? player2 : player1;
-        $('.turn').text(currentPlayer + "'s Turn");
         if (computer) computerPick();
       };
     } else {
