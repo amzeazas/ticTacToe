@@ -87,7 +87,7 @@ $(document).ready(function() {
       $('#noNameModal').modal('show');
     }
   });
-  
+
   function changeCursor() {
     if (turns % 2 === 0 || turns === undefined) {
       $(".tic-tac-toe-table").removeClass("o-cursor").addClass("x-cursor");
@@ -124,13 +124,9 @@ $(document).ready(function() {
     turns++;
     changeCursor();
     if (playerTurn.win() === true) {
-      $('span#winner').text('Congrats!' + " " + 'Player ' + playerTurn.mark + ' wins!');
+      $('span#winner').text('Wow. You lost to a computer...');
       endGame();
       $(".cell-value").off();
-    } else if (turns === 9) {
-      $('span#winner').text('Game over. Fight to the DEATH (or play again)!')
-      renderCat();
-      endGame();
     } else {
       playerTurn = playerTurn === player1 ? player2 : player1;
       $('.turn').text("Player " + playerTurn.mark + "'s Turn");
