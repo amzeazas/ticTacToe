@@ -1,19 +1,19 @@
 # Tic Tac Toe
 
-##### version 1.0, September 16, 2015
+##### version 1.1, October 8, 2015
 
 #### By Alexa Zeazas, Tim Kellogg, Aileen Cacayorin & Janice Laset-Parkerson
 
 ## Description
 
-_This is the game of tic tac toe. You can play against a friend or try your best against the computer. Have fun!_
+_This is the game of **Tic Tac Toe**. You can play against a friend or try your best against the computer. Have fun!_
 
 ## Setup
 
-1. open a command terminal
-2. `git clone https://github.com/janicelaset/tic-tac-toe.git`
-3. `cd tic-tac-toe` to navigate to the project directory
-4. open tic-tac-toe.html in the browser to launch the application
+1. Open a command terminal.
+2. Type `git clone https://github.com/janicelaset/tic-tac-toe.git` in terminal.
+3. Type `cd tic-tac-toe` in terminal to navigate to the project directory
+4. Open tic-tac-toe.html in the browser to launch the application.
 
 ## Technologies Used
 
